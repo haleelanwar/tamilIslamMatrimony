@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>#Include</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">#Include</h1>
+      <h2 class="project-tagline">Code</h2>
+      <a href="https://bhagwati.github.io/-Include/" class="btn">Home</a>
+      <a href="https://bhagwati.github.io/-Include/JAVA8" class="btn">JAVA8</a>
+      <a href="https://bhagwati.github.io/-Include/" class="btn">SCALA</a>
+      <a href="https://bhagwati.github.io/-Include/Problems.html" class="btn">PROBLEMS</a>
+    </section>
+
+    <section class="main-content">
+<p>Given an array  of  elements, find the maximum possible sum of a
+Contiguous subarray
+Non-contiguous (not necessarily contiguous) subarray.</p>
+<iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fbhagwati.github.io%2F-Include%2FMaxSubArray&layout=button&size=small&mobile_iframe=true&width=58&height=20&appId" width="58" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+<script src="//platform.linkedin.com/in.js" type="text/javascript"> lang: en_US</script>
+<script type="IN/Share" data-url="https://bhagwati.github.io/-Include/MaxSubArray"></script>
+ <pre><code>
+ import java.io.*;
+import java.util.*;
+
+public class Solution {
+    int size;
+    int[] arr;
+    static Scanner sc = new Scanner(System.in);
+    
+    public static void main(String[] args) {
+       
+        int n, i ;
+        n = sc.nextInt();
+        Solution[] listOfObjs = new Solution[n];
+        for(i=0;i<n;i++)
+        {
+         listOfObjs[i] = new Solution();   
+         takeInput(listOfObjs[i]);
+         printContigiousSum(listOfObjs[i]);
+         System.out.print(" ");   
+         printUnContigiousSum(listOfObjs[i]);
+         System.out.println("");   
+        }
+    }
+     
+    public static void takeInput(Solution s)
+     {
+      s.size = sc.nextInt(); 
+      s.arr = new int[s.size];  
+      for(int i=0; i < (s.size) ; i++){
+          s.arr[i] = sc.nextInt();
+      }  
+     }
+    
+    public static void printContigiousSum(Solution s)
+        {
+        boolean allElementNeg = areAllEleNeg(s.arr);
+      
+        if(allElementNeg)
+            {
+           int max = Integer.MIN_VALUE;
+            for(int ele : s.arr)
+              {
+               if(ele > max)
+                   max = ele;
+              }
+            System.out.print(max);
+            }
+        else
+            {        
+        int sumSoFar = Integer.MIN_VALUE, sumEnding =0;
+         
+          for(int i=0; i < s.arr.length ; i++)
+          {
+            sumEnding = sumEnding + s.arr[i];
+            if(sumEnding < 0)
+            sumEnding = 0;  
+            if(sumEnding > sumSoFar)
+            sumSoFar = sumEnding;
+          }
+         System.out.print(sumSoFar);
+        }
+    }
+    
+    public static void printUnContigiousSum(Solution s)
+      {
+        int sum = 0;
+        boolean allElementNeg = areAllEleNeg(s.arr);
+      
+        if(allElementNeg)
+            {
+           int max = Integer.MIN_VALUE;
+            for(int ele : s.arr)
+              {
+               if(ele > max)
+                   max = ele;
+              }
+            System.out.print(max);
+            }
+        else
+            {
+              for(int ele : s.arr)
+               {
+                 if(ele > 0)
+                   sum = sum + ele;    
+               }
+                  System.out.print(sum);
+            }
+       }
+    
+    public static boolean areAllEleNeg(int[] arrr)
+        {
+        boolean isNeg = true;
+        for(int ele : arrr)
+        {
+        if(ele > 0)
+          {
+           isNeg = false;
+           break; 
+          }
+        }
+        return isNeg;
+        }
+}
+</code></pre>
+      <footer class="site-footer">
+      <span class="site-footer-owner">By Bhagwati Malav.</span>
+      </footer>
+    </section>
+  </body>
+</html>
+
